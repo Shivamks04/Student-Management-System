@@ -1,0 +1,2493 @@
+/*Project - Student Management System
+  By ~ Khushi Pal & Shivam Kumar Singh*/
+
+/*-------Header Files-------*/
+#include <iostream>
+#include <sstream>
+#include <conio.h>
+#include <cstdlib>
+#include <iomanip>
+#include <cstring>
+#include <limits>
+#include <windows.h>
+/*-------------------------------*/
+
+using namespace std;
+
+/*-------Header Files-------*/
+class front_window_2;
+void compare_(front_window_2& f2);
+/*-------------------------------*/
+
+/*------- Globally Declared Variables -------*/
+string id_name;
+string id_pass;
+char id_name2[11]="bhoomijain";
+char id_name3[11]="disha";
+int id_pass_safe1=123;
+int id_pass_safe2=124;
+int testing=0;
+const int MAX_STUDENTS = 5;
+
+/*string fee_name;
+    //int fees_enrollment_number;
+   
+    //char fees_safed_name1[20] = "bhoomi jain";
+    //int fees_safed_enrollment_num1 ="67890";
+   
+    //char fees_safed_name2[20] = "dishaagrawal";
+    //int fees_safed_enrollment_num2 ="67891";
+//int fees_increment = 0;*/
+/*--------------------------------------------*/
+
+/*-------Login Class-------*/
+class login //takes id and password from the user
+{
+
+public:
+    void login_id()
+    {
+        cout << "Enter your ID :";
+cin >> id_name;
+cout << "Enter your password : ";
+cin >> id_pass;
+    }
+};
+
+
+/*-------Student Data Class-------*/  
+class student_data : public login // Verify Student user's id and password
+{
+
+public:
+void compare(string s1, string s2)   //for bhoomi
+{
+if(s1 == s2)
+{
+if (id_pass == "123")   //bhoomi password
+{
+   cout << "Name is Bhoomi Jain" << endl;   //if the ID given by uni is correct
+   ++testing;
+   }
+   else
+   {
+    cout << "Wrong ID Password" << endl; //but the password given by uni is wrong
+Sleep(1000);
+system("CLS");
+}
+}
+}
+void compare2(string s1, string s3)   //for disha
+{
+if (s1 == s3)
+{
+if (id_pass == "124")  //disha password
+{
+cout << "Name is Disha Agrawal" << endl; //if the ID given by uni is correct
+++testing;
+   }
+   else
+   {
+    cout << "Wrong ID Password" << endl; //but the password given by uni is wrong
+    Sleep(1000);
+system("CLS");
+}
+}
+else if (s1 != s3)   //if all the id names are wrong
+{
+cout << "Wrong Data" << endl;
+Sleep(1000);
+system("CLS");
+}
+}
+};
+/*--------------------------------------------*/
+
+/*------- Attendance Class -------*/
+class attendance // Shows Attendance Percentage Of Your Attended Classes
+{
+public:
+void displayProgressBar()
+{
+int progress, total=60;
+    while (true)
+{
+cout<<"Total Classes Attended(Out Of 60): ";
+    cin>>progress;
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cout << "Press any key to continue...";
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+   
+    if(progress >=1 && progress <=60)
+    {
+    const int barWidth = 20; // Adjust the bar width as needed
+    float percentage = static_cast<float>(progress) / total;
+    int filledWidth = static_cast<int>(barWidth * percentage);
+    int remainingWidth = barWidth - filledWidth;
+
+    cout << "Attendance: [";
+    cout << std::string(filledWidth, '=') << string(remainingWidth, '-');
+    cout << "] " << static_cast<int>(percentage * 100) << "%" << endl;
+    cout << "Press any key to continue...";
+    cin.ignore(); // Wait for user input
+    cin.get();
+system("CLS");
+}
+else
+{
+cout<<"Invaild Entry!! Please Try Again"<<endl;
+Sleep(1000);
+system("CLS");
+}
+}
+};
+/*--------------------------------------------*/
+
+/*------- Schedule Class -------*/
+class schedule : public login //Contains Schedule Of Classes and Exams
+{
+    public:
+    void time_table()
+    {
+        int ch;
+        do
+        {
+        while (true)
+{
+            cout << "\t-----------------------------" << endl;
+            cout << "\t\tTime Table " << endl;
+            cout << "\t-----------------------------" << endl;
+            cout << "\t1. Monday" << endl;
+            cout << "\t2. Tuesday" << endl;
+            cout << "\t3. Wednesday" << endl;
+            cout << "\t4. Thursday" << endl;
+            cout << "\t5. Friday" << endl;
+            cout << "\t6. Back To Main Menu" << endl;
+            cout << "\tEnter your choice: ";
+            cin >> ch;
+        if (!cin.fail())
+{
+           break;
+        }
+        cout << "\n\tInvalid input. Please Try Again." << endl;
+        Sleep(1000);
+        cout << "\tPress any key to continue...";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+        switch (ch)
+        {
+           case 1:
+            system("CLS");
+               cout<<"\t\t----Monday----"<<endl;
+               cout<<"Timing                            Subject"<<endl;
+               cout<<"---------------------------------------------------"<<endl;
+               cout<<"9:15 - 10:10                      Minor Track"<<endl;
+               cout<<"0:15 - 11:10                      Physics"<<endl;
+               cout<<"11:15 - 12:10                     CSE"<<endl;
+               cout<<"---------------------------------------------------"<<endl;
+            cout<<"12:15 - 1:10                      Lunch Break"<<endl;
+               cout<<"---------------------------------------------------"<<endl;
+               cout<<"1:15 - 2:10                       Mathematics"<<endl;
+               cout<<"2:15 - 3:10                       EVS"<<endl;
+               cout<<"3:15 - 4:10                       Library"<<endl;
+               cout<<"4:15 - 5:10                       Library"<<endl;
+               cout << "\n\tPress any key to continue...";
+    cin.ignore(); // Wait for user input
+    cin.get();
+    system("CLS");
+               break;
+            case 2:
+            system("CLS");
+               cout<<"\t\t----Tuesday----"<<endl;
+               cout<<"Timing                            Subject"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"9:15 - 10:10                      BME / CSE Lab"<<endl;
+                cout<<"0:15 - 11:10                      BME / CSE Lab"<<endl;
+                cout<<"11:15 - 12:10                     BCU"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"12:15 - 1:10                      Lunch Break"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"1:15 - 2:10                       Mathematics"<<endl;
+                cout<<"2:15 - 3:10                       CSE"<<endl;
+                cout<<"3:15 - 4:10                       Physics"<<endl;
+                cout<<"4:15 - 5:10                       Library"<<endl;
+                cout << "\n\tPress any key to continue...";
+    cin.ignore(); // Wait for user input
+    cin.get();
+    system("CLS");
+                break;
+            case 3:
+            system("CLS");
+               cout<<"\t\t----Wednesday----"<<endl;
+               cout<<"Timing                            Subject"<<endl;
+               cout<<"---------------------------------------------------"<<endl;
+               cout<<"9:15 - 10:10                      Minor Track"<<endl;
+               cout<<"0:15 - 11:10                      Minor Track"<<endl;
+               cout<<"11:15 - 12:10                     Mathematics"<<endl;
+               cout<<"---------------------------------------------------"<<endl;
+               cout<<"12:15 - 1:10                      Lunch Break"<<endl;
+cout<<"---------------------------------------------------"<<endl;
+                cout<<"1:15 - 2:10                       BSU"<<endl;
+                cout<<"2:15 - 3:10                       French"<<endl;
+                cout<<"3:15 - 4:10                       Physics"<<endl;
+                cout<<"4:15 - 5:10                       Library"<<endl;
+                cout << "\n\tPress any key to continue...";
+    cin.ignore(); // Wait for user input
+    cin.get();
+    system("CLS");
+                break;
+            case 4:
+            system("CLS");
+               cout<<"\t\t----Thursday----"<<endl;
+               cout<<"Timing                            Subject"<<endl;
+            cout<<"---------------------------------------------------"<<endl;
+                cout<<"9:15 - 10:10                      Mathematics"<<endl;
+                cout<<"0:15 - 11:10                      Physics"<<endl;
+                cout<<"11:15 - 12:10                     BSU"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"12:15 - 1:10                      Lunch Break"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"1:15 - 2:10                       CSE"<<endl;
+                cout<<"2:15 - 3:10                       ECE"<<endl;
+                cout<<"3:15 - 4:10                       ECE / PHY Lab"<<endl;
+                cout<<"4:15 - 5:10                       ECE / PHY Lab"<<endl;
+                cout << "\n\tPress any key to continue...";
+    cin.ignore(); // Wait for user input
+    cin.get();
+    system("CLS");
+                break;
+            case 5:
+            system("CLS");
+                cout<<"\t\t----Friday---"<<endl;
+                cout<<"Timing                            Subject"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"9:15 - 10:10                      CSE / BME Lab"<<endl;
+                cout<<"0:15 - 11:10                      CSE / BME Lab"<<endl;
+                cout<<"11:15 - 12:10                     Physics"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"12:15 - 1:10                      Lunch Break"<<endl;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"1:15 - 2:10                       EVS"<<endl;
+                cout<<"2:15 - 3:10                       ECE"<<endl;
+                cout<<"3:15 - 4:10                       PHY / ECE Lab"<<endl;
+                cout<<"4:15 - 5:10                       PHY / ECE Lab"<<endl;
+                cout << "\n\tPress any key to continue...";
+    cin.ignore(); // Wait for user input
+    cin.get();
+    system("CLS");
+                break;
+            default:
+               
+if(ch==6)
+                {
+                   cout<<"Taking You Back To The Main Menu..."<<endl;
+                   system("CLS");
+                }
+                else
+                {
+                cout<<"Invalid Input!! Please Enter A Valid Option..."<<endl;
+                system("CLS");
+}
+break;
+        }
+        cout << endl;
+    } while (ch >= 1 && ch < 6);
+}
+
+void exam()
+{
+   int date, month, year, count_,attempt=0;
+   
+   cout << "Enter Today's Date: ";
+    cin >> date;
+    if (date >= 1 && date <= 31)
+{
+        count_ = 1;
+        do
+{
+            cout << "Enter Month: ";
+            cin >> month;
+            if (month >= 1 && month <= 12)
+{
+attempt =1;
+                count_ = 1;
+                do
+{
+                    cout << "Enter Year: ";
+                    cin >> year;
+                    if (year == 2023)
+{
+                        count_ = 1;
+                        do
+                        {
+                        count_ = 1;
+                        if ((date == 19 && month == 6) || (date == 15 && month == 10))
+{
+count_=0;
+                        system("CLS");
+                            cout << "\n\tYour Exams Starts Today!!!" << endl;
+                            cout << "\tHere Is The Exam Schedule" << endl;
+                            cout << "---------------------------------------------------" << endl;
+                            cout << "Date\t\t\t\tSubject" << endl;
+                            cout << "---------------------------------------------------" << endl;
+                            if (month == 6)
+{
+                                cout << "19.06.2023\t\t\tBCU241 + FLU244 " << endl
+                                    << "MONDAY\n"
+                                    << endl;
+                                cout << "20.06.2023\t\t\tBSU243 + EVS242 " << endl
+                                    << "TUESDAY\n"
+                                    << endl;
+                                cout << "21.06.2023\t\t\tCSA201" << endl
+                                    << "WEDNESDAY \t\t\tCSD201" << endl
+                                    << "\t\t\tIOT SENSORS AND DEVICES" << endl
+                                    << "\t\t\tCYBER SECURITY ESSENTIALS\n"
+                                    << endl;
+                                cout << "22.06.2023\t\t\tMAT201" << endl
+                                    << "THURSDAY\n"
+                                    << endl;
+                                cout << "23.06.2023\t\t\tPHY101" << endl
+                                    << "FRIDAY\n"
+                                    << endl;
+                                cout << "26.06.2023\t\t\tECE101" << endl
+                                    << "MONDAY\n"
+                                    << endl;
+                                cout << "27.06.2023\t\t\tCSE204" << endl
+                                    << "TUESDAY\n"
+                                    << endl;
+                                cout << "\nPress any key to continue...";
+                            cin.ignore();
+                            cin.get();
+                            system("CLS");
+                            }
+else
+{
+                                cout << "20.06.2023\t\t\tCSA201" << endl
+                                    << "WEDNESDAY \t\t\tCSD201" << endl
+                                    << "\t\t\tIOT SENSORS AND DEVICES" << endl
+                                    << "\t\t\tCYBER SECURITY ESSENTIALS\n"
+                                    << endl;
+                                cout << "21.06.2023\t\t\tBCU241 + FLU244 " << endl
+                                    << "THURSDAY\n"
+                                    << endl;
+                                cout << "22.06.2023\t\t\tECE101" << endl
+                                    << "FRIDAY\n"
+                                    << endl;
+                                cout << "25.06.2023\t\t\tCSE204" << endl
+                                    << "MONDAY\n"
+                                    << endl;
+                                cout << "26.06.2023\t\t\tBSU243 + EVS242 " << endl
+                                    << "TUESDAY\n"
+<< endl;
+                                cout << "27.06.2023\t\t\tMAT201" << endl
+                                    << "WEDNESDAY\n"
+                                    << endl;
+                                cout << "29.06.2023\t\t\tPHY101" << endl
+                                    << "FRIDAY\n"
+                                    << endl;
+cout << "\nPress any key to continue...";
+                            cin.ignore();
+                            cin.get();
+                            system("CLS");
+                            }
+                        }
+else if (month <= 6)
+{
+count_=0;
+                            system("CLS");
+                            if (month == 6 && date > 19)
+{
+                               cout << "\n\tYour Exam Has Already Started" << endl;
+                            }
+else
+{
+                               cout << "\n\tYour Upcoming Exam Are From 19 June " << year << endl;
+                            }
+                            cout << "\tHere Is The Exam Schedule" << endl;
+                            cout << "---------------------------------------------------" << endl;
+                            cout << "Date\t\t\t\tSubject" << endl;
+                            cout << "---------------------------------------------------" << endl;
+                            cout << "19.06.2023\t\t\tBCU241 + FLU244 " << endl
+                                << "MONDAY\n"
+                                << endl;
+                            cout << "20.06.2023\t\t\tBSU243 + EVS242 " << endl
+                                << "TUESDAY\n"
+                                << endl;
+                            cout << "21.06.2023\t\t\tCSA201" << endl
+                                << "WEDNESDAY \t\t\tCSD201" << endl
+                                << "\t\t\tIOT SENSORS AND DEVICES" << endl
+                                << "\t\t\tCYBER SECURITY ESSENTIALS\n"
+                                << endl;
+                            cout << "22.06.2023\t\t\tMAT201" << endl
+                                << "THURSDAY\n"
+                                << endl;
+                            cout << "23.06.2023\t\t\tPHY101" << endl
+                                << "FRIDAY\n"
+                                << endl;
+                            cout << "26.06.2023\t\t\tECE101" << endl
+                                << "MONDAY\n"
+                                << endl;
+                            cout << "27.06.2023\t\t\tCSE204" << endl
+                                << "TUESDAY\n"
+                                << endl;
+                            cout << "\nPress any key to continue...";
+                            cin.ignore();
+                            cin.get();
+                            system("CLS");
+                        }
+else
+{
+count_=0;
+                            system("CLS");
+                            if (month == 10 && date > 15)
+{
+                               cout << "\n\tYour Exam Has Already Started" << endl;
+                            }
+else
+{
+                                cout << "\n\tYour Upcoming Exam Are From 15 October " << year << endl;
+                            }
+                            cout << "\t\tHere Is The Exam Schedule" << endl;
+                            cout << "\t---------------------------------------------------" << endl;
+                            cout << "\tDate\t\t\t\tSubject" << endl;
+                            cout << "\t---------------------------------------------------" << endl;
+                            cout << "\t20.06.2023\t\t\tCSA201" << endl
+                                << "\tWEDNESDAY \t\t\tCSD201" << endl
+                                << "\t\t\t\tIOT SENSORS AND DEVICES" << endl
+                                << "\t\t\t\tCYBER SECURITY ESSENTIALS\n"
+                                << endl;
+                            cout << "\t21.06.2023\t\t\tBCU241 + FLU244 " << endl
+                                << "\tTHURSDAY\n"
+                                << endl;
+                            cout << "\t22.06.2023\t\t\tECE101" << endl
+                                << "\tFRIDAY\n"
+                                << endl;
+                            cout << "\t25.06.2023\t\t\tCSE204" << endl
+                                << "\tMONDAY\n"
+                                << endl;
+                            cout << "\t26.06.2023\t\t\tBSU243 + EVS242 " << endl
+                                << "\tTUESDAY\n"
+                                << endl;
+                            cout << "\t27.06.2023\t\t\tMAT201" << endl
+                                << "\tWEDNESDAY\n"
+                                << endl;
+                            cout << "\t29.06.2023\t\t\tPHY101" << endl
+                                << "\tFRIDAY\n"
+                                << endl;
+                            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+                        }
+} while(count_ >=1 && count_ <=3);
+                     }
+else
+{
+                       system("CLS");
+                       cout << "\n\tPlease Enter Current Year!" << endl;
+                       cout << "\tYour Exam Year Should Be 2023" << endl;
+                       count_++;
+                   }
+               } while (count_ >=1 && count_ <=3);
+               if(count_>3)
+               {
+                count_++;
+                cout << "\n\tMaximum Wrong Attempt Reached!!" << endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+}
+           }
+else
+{
+               system("CLS");
+               cout << "\n\tInvalid Month! " << endl;
+               cout << "\tMonth Should Be Between 1 to 12" << endl;
+               count_++;
+           }
+       } while (count_ >=1 && count_ <=3);
+       if(count_==4)
+               {
+                cout << "\n\tMaximum Wrong Attempt Reached!!" << endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+}
+   }
+else
+{
+       system("CLS");
+       cout << "\nInvalid Date!" << endl;
+       cout << "\tDate Should Be Between 1 to 31" << endl;
+       cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+   }
+}
+
+/*void result()
+{
+int date_,month_,year_,count=0;
+do {
+cout<<"Enter Today's Date: "<<endl;
+cin>>date_;
+if(date_ >=1 && date_ <=31)
+{
+cout<<"Enter Month: "<<endl;
+cin>>month_;
+if(month_>=1 && month_<=12)
+{
+cout<<"Enter Year: "<<endl;
+    cin>>year_;
+if(year_==2023)
+{
+if((month_==6) || (month_==12) )
+{
+            cout<<"Your Results Will Announced After The Completion Of This Exam."<<endl;
+        }
+        else if(month_==1 || month_==7 )
+        {
+        cout<<"Result Of Your Previous Exams Will Be Declared Soon."<<endl;
+        }
+        else
+        {
+           cout<<"Your Exams Results Was Already Declared"<<endl;
+        }
+        count++;
+}
+else
+    {
+    cout<<"Invalid Year!! Please Enter Correct Year..."<<endl;
+}
+}
+else
+{
+cout<<"Invalid Month!! Please Enter Correct Month..."<<endl;
+}
+}
+else
+{
+cout<<"Invalid Date!! Please Enter Correct Date..."<<endl;
+}
+} while (count==0);
+}*/
+};
+/*------------------------------*/
+
+/*------- Display Class -------*/
+class display : public schedule //Contains Menu Driven Program For Schedule Class
+{
+public:
+void dis()
+{
+int choice;
+    do {
+    while (true)
+{
+        cout << "\t\t _____________________________" << endl;
+        cout << "\t\t|\t   Schedule\t      |" << endl;
+        cout << "\t\t|-----------------------------|" << endl;
+        cout << "\t\t|\t1. Time Table\t      |" << endl;
+        cout << "\t\t|\t2. Exam\t\t      |" << endl;
+        //cout << "\t\t|\t3. Result\t      |" << endl;
+        cout << "\t\t|\t3. Back To Main Menu  |" << endl;
+        cout << "\t\t|_____________________________|" << endl;
+        cout << "\t\t     Enter your choice: ";
+        cin >> choice;
+        if (!cin.fail())
+{
+   break;
+        }
+        cout << "\n\t\tInvalid input. Please Try Again." << endl;
+        Sleep(1000);
+        cout << "\t\tPress any key to continue...";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+   
+       switch (choice)
+{
+case 1:
+system("CLS");
+                time_table();
+                break;
+            case 2:
+            system("CLS");
+                exam();
+                break;
+            /*case 3:
+            system("CLS");
+               //result();
+                break;*/
+            case 3:
+                cout << "\n\t\tTaking You Back To The Main Menu..." << endl;
+                Sleep(1000);
+                system("CLS");
+                break;
+            default:
+                cout << "\t\tInvalid choice!" << endl;
+                Sleep(1000);
+                system("CLS");
+                break;
+        }
+cout << endl;
+    } while (choice >= 1 && choice<3);
+}
+};
+/*--------------------------------------------*/
+
+/*------- Result -------*/
+class result : public  login
+{
+    public:
+    void report_card()
+    {
+        cout << " ____________________________________________________" << endl;
+        cout << "| \t\t AMITY UNIVERSITY \t\t     |" << endl;
+        cout << "| \t\t  MADHYA PRADESH \t\t     |" << endl;
+        cout << "|____________________________________________________|" << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| NAME : Disha Agrawal \t\t\t\t     |" << endl;
+        cout << "| ENROLLMENT NUMBER : 67891   \t\t\t     |" << endl;
+        cout << "| COURSE : B.Tech (CSE)\t\t\t\t     |" << endl;
+        cout << "| BATCH : 2022 - 2026  \t\t\t\t     |" << endl;
+        cout << "| SEMESTER : II \t\t\t\t     |" << endl;
+        cout << "|____________________________________________________|" << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| Applied Mathematics-II           7.8       B       |" << endl;
+        cout << "| OOPs Using C++                   8.9       A       |" << endl;
+        cout << "| Applied Physics-I                8.3       A       | " << endl;
+        cout << "| Environment Studies-II           9.5       A+      | " << endl;
+        cout << "| Behavioural Science-II           9.6       A+      | " << endl;
+        cout << "| Basic Electrical Engineering     8.8       A       | " << endl;
+        cout << "| French-II                        9.7       A+      | " << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+cout << "| Signature Of Director \tSignature Of Student | " << endl;
+cout << "| \t\t\t\t\t\t     |" << endl;
+   cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| Note : In case of any omission in information      | " << endl;
+        cout << "| please contaact the authority as soon as possible. | " << endl;
+        cout << "|____________________________________________________|" << endl;
+    }
+    void result_details()
+    {
+        cout << " ____________________________________________________" << endl;
+        cout << "| \t\t AMITY UNIVERSITY \t\t     |" << endl;
+        cout << "| \t\t  MADHYA PRADESH \t\t     |" << endl;
+        cout << "|____________________________________________________|" << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| Subjects                      | Written | Internal |" << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| Applied Mathematics-II            50       29      |" << endl;
+        cout << "| OOPs Using C++                    59       30      |" << endl;
+        cout << "| Applied Physics-I                 61       30      | " << endl;
+        cout << "| Environment Studies-II            65       30      | " << endl;
+        cout << "| Behavioural Science-II            67       30      | " << endl;
+        cout << "| Basic Electrical Engineering      63       29      | " << endl;
+        cout << "| French-II                         69       30      | " << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| TOTAL                             642              |" << endl;
+        cout << "| PERSENTAGE  \t\t\t    91.7 % \t     |" << endl;
+        cout << "| \t\t\t\t\t\t     |" << endl;
+        cout << "| Note : In case of any omission in information      | " << endl;
+        cout << "| please contaact the authority as soon as possible. | " << endl;
+        cout << "|____________________________________________________|" << endl;
+        cout << "\n\nPress any key to continue...";
+cin.get();
+system("CLS");
+    }
+};
+/*------------------------------*/
+
+/*------- Fees Class -------*/
+/*
+class fees : public login //Shows Fee Details Of The Student
+{
+   
+    public:
+    void fees_ask_details()
+    {
+        //public:
+        cout << "Enter your full name (all characters should be small) : " << endl;
+        cin >> fee_name;
+        cout << "Enter your enrollment number : " << endl;
+        cin >> fees_enrollment_number;
+    }
+   
+    void compare_fees_details1(string f1 , string f2)
+    {
+        //public:
+        if(f1 == f2)
+        {
+            if(fees_enrollment_number == 67890)
+            {
+                cout << "First semester fees is done" << endl;
+                ++fees_increment;
+            }
+            else
+            {
+                cout << "Wrong Enrollment number" << endl;
+            }
+        }
+    }
+   
+   
+    void compare_fees_details6(string f1 , string f3)
+    {
+        //public:
+        if(f1 == f3)
+        {
+            if(fees_enrollment_number == 67891)
+            {
+                cout << "disha fees done" << endl;
+                fees_increment =2;
+            }
+            else
+            {
+                cout << "Wrong Enrollment number disha" << endl;
+            }
+        }
+       
+        else if(f1 != f3)
+        {
+            cout << "wrong fees data" << endl;
+        }
+    }
+};*/
+/*--------------------------------------------*/
+
+/*------- Personal Information Class -------*/
+class personal_info_disha //: public login   //personel info of disha [Student Details]
+{
+public:
+void per_in_di()
+{
+cout << "Name : Disha Agrawal" << endl;
+cout << "Father Name : Mr. Agrawal" << endl;
+cout << "Mother Name : Mrs. Agrawal" << endl;
+cout << "------------------------------------" << endl;
+cout << "Course : B.Tech (CSE)" << endl;
+cout << "Batch : 2022-2026" << endl;
+cout << "------------------------------------" << endl;
+cout << "Enrollment No. 67891:" << endl;
+cout << "Date Of Birth : dd-mm-yyyy" << endl;
+cout << "Blood Group : A+" << endl;
+cout << "------------------------------------" << endl;
+cout << "In case Of Emergency" << endl;
+cout << "Family : 123456789" << endl;
+cout << "Intsitution : Amity University" << endl;
+cout << "------------------------------------" << endl;
+cout << "Validity : Till August 2026" << endl;
+cout << "ID Card No. : 112233" << endl;
+cout << "If this card is found please report" << endl << "to the office number - 1234567" << endl;
+
+cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+}
+};
+/*--------------------------------------------*/
+
+/*------- Syllabus Class -------*/
+class syllabus : public login //Contains Syllabus Of Subjects
+{
+public:
+void subject_list()
+{
+    int syllabus_choice;
+   do
+    {
+    while (true)
+{
+cout << "1. Applied Mathematics-II" << endl;//(ORDINARY & PARTIAL DIFFERENTIAL EQUATIONS AND TRANSFORM)" << endl;
+    cout << endl;
+    cout << "2. Object Oriented Programming Using C++" << endl;
+    cout << endl;
+cout << "3. Applied Physics-I" << endl;
+cout << endl;
+cout << "4. Environmental Studies - II" << endl;
+    cout << endl;
+cout << "5. Behavioural Science - II" << endl;
+    cout << endl;
+cout << "6. Basic Electrical Engineering" << endl;
+cout << endl;
+cout << "7. French-II" << endl;
+cout << endl;
+cout << "8. Go Back" << endl;
+    cout << endl;
+cout << "Enter your choice :";
+    cin >> syllabus_choice;
+   
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cout << "Press any key to continue...";
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+    switch(syllabus_choice)
+{
+    case 1:
+system("CLS");
+cout << "------------------------Course Objective:--------------------------" << endl;
+            cout << endl;
+           
+            cout << "The objective of this course is to familiarize the prospective" << endl
+<< "engineers with techniques in ordinary." << endl;
+            cout << endl;
+       
+            cout << "------------------------Course Contents:---------------------------" << endl;
+            cout << endl;
+       
+            cout << "-> Module I: Ordinary differential equations: (9 Hours)" << endl;
+            cout << endl;
+               
+            cout << "-> Module II: Partial Differential Equations: (8 Hours)" << endl;
+                cout << endl;
+               
+                cout << "-> Module III: Laplace Transform and Fourier series: (9 Hours)" << endl;
+               
+                cout << endl;
+               
+                cout << "-> Module IV: Complex Variable - Differentiation: (7 Hours)" << endl;
+               
+                cout << endl;
+               
+                cout << "-> Module V: Complex Variable Integration: (7 Hours)" << endl;
+               
+cout << endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+    break;
+
+    case 2:
+system("CLS");
+cout << "------------------------Course Objective:--------------------------" << endl;
+           cout << endl;
+           
+           cout << "The objective of this module is to introduce object oriented " << endl
+  << "programming. " << endl;
+                cout << endl;
+               
+           cout << "------------------------Course Contents:---------------------------" << endl;
+           cout << endl;
+           
+           cout << "-> Module I: Introduction: (6 Hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module II: Classes and Objects: (7 Hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module III: Inheritance: (6 Hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module IV: Polymorphism: (6 Hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module V: Strings. Files and Exception Handling: (5 Hours)" << endl;
+           cout << endl;
+           cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+    break;
+
+    case 3:
+system("CLS");
+cout << "------------------------Course Objective:--------------------------" << endl;
+           cout << endl;
+           
+           cout << "Aim of this course is to introduce the students to fundamentals" << endl
+  << "of graduate level physics" << endl;
+           cout << endl;
+           
+           cout << "------------------------Course Contents:---------------------------" << endl;
+           cout << endl;
+           
+           cout << "-> Module I: Electromagnetics: (10 Hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module II: Special Theory of Relativity: (10 Hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module III: Wave Mechanics: (10 Hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module IV: Semiconductor and Electronic Materials: (10 Hours)" << endl;
+           cout << endl;
+           cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+    break;
+
+  case 4:
+  system("CLS");
+ cout << "------------------------Course Objective:--------------------------" << endl;
+         cout << endl;
+         
+         cout << "To understand various types of environmental pollution. "<< endl
+  << "To educate masses, in general and students. " << endl;
+         cout << endl;
+         
+         cout << "------------------------Course Contents:---------------------------" << endl;
+         cout << endl;
+         
+         cout << "-> Module I; Environmental Pollution (7 Hours)" << endl;
+         cout << endl;
+         
+         cout << "-> Module II: Social Issues and the Environment (7 Hours)" << endl;
+         cout << endl;
+         
+         cout << "-> Module III: Human Population and the Environment (4 Hours)" << endl;
+         cout << endl;
+         
+cout << "-> Module IV: Field Work (2 Hours)" << endl;
+            cout << endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+    break;
+   
+    case 5:
+system("CLS");
+cout << "Syllabus not uploded yet !!!" << endl;
+    cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+    break;
+   
+    case 6:
+system("CLS");
+cout << "------------------------Course Objective:--------------------------" << endl;
+           cout << endl;
+           
+           cout << "The objective of the course is to provide a brief knowledge of "<< endl
+  << "Electrical Engineering to students of all disciplines." << endl;
+           cout << endl;
+           
+           cout << "------------------------Course Contents:---------------------------" << endl;
+           cout << endl;
+           
+           cout << "-> Module I: DC Circuits: (7 hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module II: AC Circuits: (7 hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module III: Transformers: (6 hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module IV: Electrical Machines: (6 hours)" << endl;
+           cout << endl;
+           
+           cout << "-> Module V: Power Converters: (4 hours)" << endl;
+  cout << endl;
+cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+   break;
+   
+   case 7:
+system("CLS");
+cout << "Syllabus not uploaded yet !!!" << endl;
+   cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+   break;
+
+
+    default: if(syllabus_choice==8)
+                {
+                   cout<<"Taking You Back To The Main Menu..." << endl;
+                   Sleep(1000);
+                   system("CLS");
+                }
+                else
+                {
+                cout<<"Invalid Input!! Please Enter A Valid Option..." << endl;
+                Sleep(1000);
+                   system("CLS");
+}
+    break;
+    }
+   
+}while(syllabus_choice >= 1 && syllabus_choice <= 7);
+}
+};
+
+/*--------------------------------------------*/
+
+/*------- Library Class -------*/
+class library : public login // Contains Information About Books On Some Particular Subjects
+{
+public:
+void library_sub_list()
+{
+const char* subjectName;
+        const char* books[5];
+int lib_choice;
+do
+{
+while (true)
+{
+cout << "----------Library----------" << endl;
+cout << "1. Programming Languages" << endl;
+cout << "2. Physics" << endl;
+cout << "3. Mathematics" << endl;
+cout << "4. Artificial Intelligence" << endl;
+cout << "5. Chemistry" << endl;
+cout << "6. Go Back To Main Menu\n" << endl;
+cout << "Enter Your Choice: " ;
+cin >> lib_choice;
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+      Sleep(1000);
+        cout << "Press any key to continue...";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+       
+switch(lib_choice)
+{
+case 1://programming languages books
+system("CLS");
+subjectName = "-----Programming Languages-----" ;
+                books[0] = "Clean Code";
+                books[1] = "Design Patterns, Elements of Reusable Object-Oriented Software";
+                books[2] = "Refactoring, Improving The Design of Existing Code";
+                books[3] = "Introduction to Algorithms";
+                books[4] = "The Pragmatic Programmer";
+break;
+
+case 2://Physics books
+system("CLS");
+subjectName = "-----Physics-----";
+               books[0] = "The Elegant Universe";
+               books[1] = "The Feynman Lectures on Physics";
+               books[2] = "Quantum Mechanics: The Theoretical Minimum";
+books[3] = "Thirty Years that Shook Physics";
+                books[4] = "A Brief History of Time";
+break;
+
+case 3://Mathematics books
+system("CLS");
+subjectName = "-----Mathematics-----";
+                books[0] = "The Man Who Knew Infinity";
+                books[1] = "Gdel, Escher, Bach";
+                books[2] = "The Colossal Book of Mathematics";
+                books[3] = "Euclid in the Rainforest";
+                books[4] = "Four Colours Suffice";
+break;
+case 4://Artificial Intelligence books
+system("CLS");
+subjectName = "-----Artificial Intelligence-----";
+books[0] = "Artificial Intelligence: A Modern Approach";
+books[1] = "Deep Learning";
+books[2] = "The Master Algorithm";
+books[3] = "Superintelligence";
+books[4] = "AI Algorithms and Data Structures";
+break;
+case 5://Chemistry books
+system("CLS");
+subjectName = "-----Chemistry-----";
+books[0] = "H2O: A Biography of Water";
+books[1] = "The Disappearing Spoon";
+books[2] = "The Poisoner's Handbook";
+books[3] = "Why Does Asparagus Make Your Wee Smell?";
+books[4] = "The Alchemy of Air";
+break;
+default:
+if(lib_choice==6)
+                {
+                   cout<<"Taking You Back To The Main Menu..."<<endl;
+                   Sleep(1000);
+                    system("CLS");
+                }
+                else
+                {
+                cout<<"Invalid Input!! Please Enter A Valid Option..."<<endl;
+                Sleep(1000);
+                    system("CLS");
+}
+break;
+}
+
+if(lib_choice >= 1 && lib_choice <6)
+{
+cout << "\t   Books on \n" << subjectName << ":\n\n";
+
+        // Display the books with indices
+        for (int i = 0; i < 5; ++i)
+{
+            cout << i + 1 << ". " << books[i] << "\n\n";
+        }
+       
+        // Prompt for selecting a book
+        int bookChoice;
+        cout << "Enter the number of the book you want to view: ";
+        cin >> bookChoice;
+        system("CLS");
+
+        // Validate the book choice
+        if (bookChoice >= 1 && bookChoice <= 5)
+{
+            cout << "Content of " << books[bookChoice - 1] << ":\n";
+            // The content of the selected book is here
+            int index;
+        index = lib_choice - 1;
+        switch(index)
+        {
+        case 0:
+        switch(bookChoice)
+        {
+        case 1:
+        cout<<"Author: Robert C. Martin"<<endl;
+              cout<<"For aspiring coders, programmers, and developers, this is a book "<< endl
+  << "that they must have if they want to shine in their coding career."<<endl;
+              cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+              break;
+            case 2:
+            cout<<"Author: Eric Gamma, Richard Helm, Ralph Johnson, and John Vlissides"<<endl;
+        cout<<"The group of these four authors came together, bringing their "<< endl
+  << "expertise to software development and coding."<<endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+            break;
+            case 3:
+            cout<<"Author: Martin Fowler"<<endl;
+        cout<<"Although this book is written in Java, the concepts and ideas "<< endl
+  << "apply to any programming language."<<endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+            break;
+            case 4:
+            cout<<"Author: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein"<<endl;
+        cout<<"Introduction to Algorithms is exactly what the title says."<<endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+            break;
+            case 5:
+            cout<<"Author: Andrew Hunt, David Thomas"<<endl;
+        cout<<"The Pragmatic Programmer has become one of the most well-known "<< endl
+  << "programming books."<<endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+            break;
+            default:
+            break;
+        }
+        break;
+        case 1:
+        switch(bookChoice)
+        {
+        case 1:
+        cout<<"Author: Brian Greene"<<endl;
+              cout<<"Written by one of the world most renowned string theorists, "<< endl
+  << "The Elegant Universe takes complex topics and makes them "<< endl
+  << "easily accessible to any reader"<<endl;
+              cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+              break;
+            case 2:
+            cout<<"Author: Richard P. Feynman"<<endl;
+              cout<<"Unmissable content for any student  and those eager to "<< endl
+  << "learn more about this expansive field"<<endl;
+              cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+            break;
+            case 3:
+            cout<<"Author: Leonard Susskind and Art Friedman"<<endl;
+              cout<<"If you are a reader with some knowledge of linear algebra "<< endl
+  << "and calculus who wants to dive deeper into the world of "<< endl
+  << "quantum mechanics, this is for you."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 4:
+            cout<<"Author: George Gamow"<<endl;
+              cout<<"Gamow possesses an engaging, entertaining way of presenting "<< endl
+  << "the very basics of quantum physics and its progression "<< endl
+  << "over the span of three decades."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 5:
+            cout<<"Author: Stephen Hawking"<<endl;
+              cout<<"Written by the late Stephen Hawking one of the most renowned "<< endl
+  << "scientists of this century."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            default:
+            break;
+            }
+            break;
+            case 2:
+        switch(bookChoice)
+        {
+        case 1:
+        cout<<"Author: Robert Kanigel"<<endl;
+                    cout<<"The self-taught Indian genius Srinivasa Ramanujan had a flair "<< endl
+  << "for strange and beautiful formulas, so unusual that "<< endl
+  << "mathematicians are still coming to grips with their true meaning."<<endl;
+              cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 2:
+            cout<<"Author: Douglas Hofstadter"<<endl;
+              cout<<"One of the great cult books, a very original take on the "<< endl
+  << "logical paradoxes associated with self-reference, such "<< endl
+  << "as this statement is false."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 3:
+            cout<<"Author: Martin Gardner"<<endl;
+              cout<<"In his long-running Mathematical Games column in Scientific "<< endl
+  << "American, Gardner a journalist with no mathematical training "<< endl
+  << "created the field of recreational mathematics."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 4:
+            cout<<"Author: Joseph Mazur"<<endl;
+              cout<<"A thoroughly readable account of the meaning of truth in "<< endl
+  << "mathematics, presented through a series of quirky "<< endl
+  << "adventures in the Greek Islands."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 5:
+            cout<<"Author: Robin Wilson"<<endl;
+              cout<<"In 1852 Francis Guthrie, a young South African mathematician, "<< endl
+  << "was attempting to colour the counties in a map of England."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            default:
+            break;
+            }
+            break;
+            case 3:
+        switch(bookChoice)
+        {
+        case 1:
+        cout<<"Author:  Stuart Russell"<<endl;
+              cout<<"The book is designed to be accessible to students with a background "<< endl
+  << "in computer science and provides a broad overview of the field."<<endl;
+              cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 2:
+            cout<<"Author: Ian Goodfellow"<<endl;
+              cout<<"The book is suitable for both students and professionals and covers "<< endl
+  << "the theory and practice of deep learning."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 3:
+            cout<<"Author: Pedro Domingos"<<endl;
+              cout<<"This book discusses the potential impact of artificial intelligence "<< endl
+  << "(AI) on society and the quest to develop the Ã¢â‚¬Å¡Ã‚Â which could potentially"<< endl
+  << " learn to perform any intellectual task that a human can."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 4:
+            cout<<"Author: Nick Bostrom"<<endl;
+              cout<<"This book discusses the potential risks and benefits of the development "<< endl
+  << "of superintelligent artificial intelligence (AI)."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 5:
+            cout<<"Author: George F. Luger"<<endl;
+              cout<<"This book is a practical guide to programming artificial intelligence "<< endl
+  << "algorithms in three of the most popular programming languages for AI."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            default:
+            break;
+            }
+            break;
+           case 4:
+        switch(bookChoice)
+        {
+        case 1:
+        cout<<"Author: Philip Ball"<<endl;
+              cout<<"A few years ago I attended a workshop at the Vatican Observatory on "<< endl
+  << "water in the solar system, and started to wonder exactly how old "<< endl
+  << "the water in my tea cup was."<<endl;
+              cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 2:
+            cout<<"Author: Sam Kean"<<endl;
+              cout<<"Sam Kean brings the periodic table to life with the stories you did"<< endl
+  << "hear in high school chemistry but will wish you did."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 3:
+            cout<<"Author: Deborah Blum"<<endl;
+              cout<<"I straight-up love mystery novel Ã‚Â particularly ones that turn on the"<< endl
+  << " details of physical evidence."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 4:
+            cout<<"Author: Andy Brunning"<<endl;
+              cout<<"Only people who can break down asparagusic acid, a chemical that is "<< endl
+  << "found only in asparagus, will notice the effect."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            case 5:
+            cout<<"Author: Thomas Hager"<<endl;
+              cout<<"The Alchemy of Air is a fascinating chemistry book that follows the "<< endl
+  << "lives of two immensely talented, tragically flawed individuals who "<< endl
+  << "discovered the solution: Fritz Haber and Carl Bosch."<<endl;
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+            default:
+            break;
+            }
+            break;
+            default:
+            break;
+        }
+        }
+else
+{
+            cout << "Invalid book choice!\n";
+            cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+        }
+}
+cout << endl;
+}while(lib_choice >= 1 && lib_choice <6);
+}
+private:
+    static bool compareStringsAscending(const char* str1, const char* str2) {
+        return strcmp(str1, str2) < 0;
+    }
+
+    static bool compareStringsDescending(const char* str1, const char* str2) {
+        return strcmp(str1, str2) > 0;
+    }
+};
+/*--------------------------------------------*/
+
+/*------- Other Class -------*/
+class other : public login // Contains Information About The College And It's Activities
+{
+public:
+void others_details()
+{
+int other_choice;
+do
+{
+while (true)
+{
+cout << "1. Know about Amity University..." << endl;
+cout << "2. Academics" << endl;
+cout << "3. About Campus" << endl;
+cout << "4. Events" << endl;
+// cout << "5. Programmes and Scholarship" << endl;
+cout << "5. Go Back to Main Menu\n" << endl;
+cout << "Enter Your Choice: ";
+cin >> other_choice;
+
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cout << "Press any key to continue...";
+      cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+switch(other_choice)
+{
+case 1: //display
+system("CLS");
+cout << "...................... Know about Amity University............................." << endl;
+cout << "-------------------------------------------------------------------------------" << endl;
+cout << "Amity University Gwalior admission 2023 is ongoing through CUET. The last date "<< endl
+  << "of CUET UG 2023 registration has been extended to March 30. CUET UG exam 2023 "<< endl
+  << "exam will be conducted from May 21 to May 31, 2023." << endl;
+cout << "Amity University is a private university located in Gwalior, Madhya Pradesh "<< endl
+  << "and was established in the year 2010. The institute is approved by "<< endl
+  << "All India Council of Technical Education (AICTE) and "<< endl
+  << "The University Grants Commission of India (UGC). Amity University "<< endl
+  << "is also accredited by Bar Council of India (BCI) and Council of Architecture. "<< endl
+  << "The Institute offers various UG, Integrated, PG, M.Phil. and Ph.D. courses. "<< endl
+  << "Admissions to most of the courses will be done on the basis of Entrance Exams "<< endl
+  << "conducted by the University whereas, for few of them, scores obtained in "<< endl
+  << "External Entrance Exams will be considered." << endl;
+  cout << "-------------------------------------------------------------------------------" << endl;
+cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+
+case 2:
+system("CLS");
+cout << "................................... Academics ................................." << endl;
+cout << "-------------------------------------------------------------------------------" << endl;
+cout << "\t...................System Of Education......................" << endl;
+cout << endl;
+
+cout << "\t\t----- Semester System -----\n" << endl;
+cout << "\tAmity University follows a Semester System which is in conformity "<< endl
+  << "\twith the global practices and standards." << endl;
+ 
+cout << endl;
+
+cout << "\t\t-----Internal Evaluation System-----\n" << endl;
+cout << "\tThe scheme of examinations & evaluation is one of the most important"<< endl
+  << "\tcomponents of judging the academic performance and development of "<< endl
+  << "\tthe students. "<< endl;
+ 
+cout << endl;
+
+cout << "\t\t-----Grade System-----\n" << endl;
+cout << "\tThe level of students' academic performance as the aggregate of "<< endl
+  << "\tcontinuous evaluation and end term examination is reflected by "<< endl
+  << "\tletter grades on a Ten Point Scale. "<< endl;
+ 
+cout << endl;
+
+
+cout << "\t\t-----Curricular Updation-----\n" << endl;
+cout << "\tThe detailed course curriculum of all the programmes in Amity University"<< endl
+  << "\tis reviewed at regular intervals as per the industry requirements. "<< endl
+  << "\tFor this, many points are considered such as feedback reports "<< endl
+  << "\ton the placements, employability of the passed out students, latest "<< endl
+  << "\tdevelopments in the technology, statutory compliances of various "<< endl
+  << "\tbodies etc. The course syllabus is first examined and evaluated by "<< endl
+  << "\tan expert committee which is then reviewed by Board of Studies of "<< endl
+  << "\tthe institution for recommendations to Academic Council for approval.\n" << endl;
+  cout << "-------------------------------------------------------------------------------" << endl;
+cout << endl;
+cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+
+case 3:
+system("CLS");
+cout << "................................ About Campus ................................." << endl;
+cout << "-------------------------------------------------------------------------------" << endl;
+cout << "Amity University Madhya Pradesh has been established by the Ritnand Balved "<< endl
+  << "Education Foundation (RBEF), New Delhi which is a society registered under "<< endl
+  << "view to promote professional, industry-oriented education in the state "<< endl
+  << "of Madhya Pradesh. Amity University Madhya Pradesh located on 100 acres "<< endl
+  << "of land opposite Gwalior Airport, impart modern, practical and "<< endl
+  << "research-based courses which will lead to the development of manpower "<< endl
+  << "which is employable and ready for industry. This in turn will drive "<< endl
+  << "the socio-economic upliftment of the region." << endl;//campuses
+  cout << "-------------------------------------------------------------------------------" << endl;
+cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+
+case 4:
+system("CLS");
+cout << "................................... Events ...................................." << endl;
+cout << "-------------------------------------------------------------------------------" << endl;
+cout << "15 May 2023 | Gwalior" << endl;
+cout << "Webinar on Legal and Ethical Issues faced by Start-Ups in India organized by "<< endl
+  << "Amity Law School, Amity University Madhya Pradesh//academics" << endl;
+cout << endl;
+
+cout << "08 May 2023 | Gwalior" << endl;
+cout << "One Day National Virtual Workshop on Generation and Commercialization of "<< endl
+  << "Intellectual Property organized by Amity Law School, "<< endl
+  << "Amity University Madhya Pradesh" << endl;
+cout << endl;
+
+cout << "27 Apr 2023 | Gwalior" << endl;
+cout << "Youth Parliament 2023" << endl;
+cout << endl;
+
+cout << "26 Apr 2023 | Gwalior" << endl;
+cout << "TED x AUMP" << endl;
+cout << endl;
+
+cout << "26 Apr 2023 | Gwalior" << endl;
+cout << "Webinar on Patenting Artificial Intelligence: A Way Forward on the occasion "<< endl
+  << "of WORLD INTELLECTUAL PROPERTY RIGHTS DAY organized by Amity Law School, "<< endl
+  << "Amity University Madhya Pradesh" << endl;
+cout << endl;
+cout << "-------------------------------------------------------------------------------" << endl;
+cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+system("CLS");
+break;
+
+// case 5: //scholarship //add contacts
+// break;
+
+default:if(other_choice==5)
+                {
+                   cout<<"Taking You Back To The Main Menu..."<<endl;
+                   Sleep(1000);
+                    system("CLS");
+                }
+                else
+                {
+                cout<<"Invalid Input!! Please Enter A Valid Option..."<<endl;
+                Sleep(1000);
+                    system("CLS");
+    }
+break; //go back
+break;
+
+}
+    }while(other_choice >= 1 && other_choice <= 4);
+}
+};
+/*--------------------------------------------*/
+
+/*------- Front Window Class Student -------*/
+class front_window // Contains Menu Driven Program For Front Page
+{
+public:
+void front()
+{
+/*------- Object Creation -------*/
+student_data log;   //inheritance
+//menu_driven test;
+attendance at;
+display d;
+result r;
+//fees submission;
+personal_info_disha test;
+syllabus syllabus_obj;
+library book_list;
+other o;
+/*--------------------------------*/
+start:
+log.login_id(); // Calls Login_id Function Which Contains Entering Id And Password
+
+string s1(id_name);   //to safe the id name given by uni
+string s2(id_name2);
+string s3(id_name3);
+
+    //string f1(fee_name);
+    //string f2(fees_safed_name1);
+    //string f3(fees_safed_name2);
+   
+    //submission.fees_ask_details();
+   
+log.compare(s1,s2);   //tocheck if the given id name is correct
+log.compare2(s1,s3);
+//==========================
+//add display (attendence) (notice) (amity uni)
+
+if(testing >= 1) // only for disha
+{
+system("CLS");
+int choice;
+do
+{
+cout << "----------------------------------------------" << endl;
+cout << "\t\tMain Menu" << endl;
+    cout << "----------------------------------------------" << endl;
+cout << endl;
+    cout << "\t 1. Attendence Details" << endl; //add per subject percentage and classes attened and today absent or present
+cout << endl;
+cout << "\t 2. Schedule " << endl; // Display the schedule class
+cout << endl;
+cout << "\t 3. Result" << endl; //add soon
+cout << endl;
+//cout << "\t 4. Fees Due" << endl;
+//cout << endl;
+cout << "\t 4. Personal Information" << endl;
+cout << endl;
+cout << "\t 5. Syllabus" << endl; //add faculty info
+cout << endl;
+cout << "\t 6. Library" << endl;
+cout << endl;
+cout << "\t 7. Other" << endl; //add amity uni someting
+cout << endl;
+cout << "\t 8. Back To Login Portal" << endl;
+cout << endl;
+    cout << "----------------------------------------------" << endl;
+       cout << endl;
+        cout << "Enter your choice ";
+        cin >> choice;
+        /*
+Add an option to log in again
+*/
+        switch(choice)
+        {
+        case 1: //attendence
+        system("CLS");
+        at.displayProgressBar();
+break;
+
+case 2: //schedule
+system("CLS");
+d.dis(); //displays menu driven program for inherited class schedule
+break;
+
+case 3: //report card
+system("CLS");
+r.report_card();
+cout << "\nPress Any Key To See Marks In Individual Subjects...";
+cin.ignore();
+cin.get();
+system("CLS");
+r.result_details();
+break;
+
+/*case 4: //fee due
+submission.fees_ask_details();
+submission.compare_fees_details1(f1,f2);
+submission.compare_fees_details6(f1,f3);
+break;*/
+
+case 4: //Student Information [Disha]
+system("CLS");
+test.per_in_di();
+break;
+
+        case 5: //syllabus
+        system("CLS");
+syllabus_obj.subject_list();
+        break;
+       
+        case 6: //library
+system("CLS");
+book_list.library_sub_list();
+break;
+
+case 7: //other
+system("CLS");
+o.others_details();
+break;
+       
+        default:
+        if(choice==8)
+        {
+           cout<<"Taking You Back To The Login Portal...."<<endl;
+           Sleep(1000);
+        }
+        else
+        {
+           cout << "Invalid Choice!" << endl;
+           Sleep(1000);
+        }
+      break;
+}
+cout << endl;
+    } while(choice>=1&&choice<8);
+    system("CLS");
+}
+
+else   //repeat if the id data is wrong
+{    
+goto start;
+}
+}
+};
+/*----------------------------------------*/
+
+/*------- Attendance Class For Admin -------*/
+class attendance_ : public login
+{
+    //cout << "----------------------Enter the attendanceof student----------------------"
+public:
+int initial_attendance;
+int second_attendance = 49;
+int classes = 59;
+int final_attendance;
+
+int initial_attendance1;
+int second_attendance1 = 39;
+int classes1 = 59;
+int final_attendance1;
+
+int initial_attendance2;
+int second_attendance2 = 44;
+int classes2 = 59;
+int final_attendance2;
+
+int initial_attendance3;
+int second_attendance3 = 59;
+int classes3 = 59;
+int final_attendance3;
+
+int initial_attendance4;
+int second_attendance4 = 45;
+int classes4 = 59;
+int final_attendance4;
+
+void display_attendance()
+{
+cout << "-------------------Enter attendance of student-------------------" << endl;
+cout << endl;
+cout << endl;
+}
+
+void disha_mark_attendance()
+{
+while (true)
+{
+cout << "1. Disha Agrawal : \t 1. YES \t 2. NO \t 3. ALREADY FEEDED \t " ;
+cin >> initial_attendance;
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+if(initial_attendance == 1)
+{
+++second_attendance;
+++classes;
+final_attendance = second_attendance*100/classes;
+cout << final_attendance << " % " << endl;
+}
+
+else if(initial_attendance == 2)
+{
+--second_attendance;
+--classes;
+final_attendance = second_attendance*100/classes;
+cout << final_attendance << " % " << endl;
+}
+
+else if(initial_attendance == 3)
+{
+  final_attendance = second_attendance*100/classes;
+}
+
+else
+{
+cout << "Wrong Input" << endl;
+}
+}
+
+void sneha_mark_attendance()
+{
+while (true)
+{
+cout << "2. Sneha Mastagar : \t 1. YES \t 2. NO \t 3. ALREADY FEEDED \t " ;
+cin >> initial_attendance1;
+
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+if(initial_attendance1 == 1)
+{
+++second_attendance1;
+++classes1;
+final_attendance1 = second_attendance1*100/classes1;
+cout << final_attendance1 << " % " << endl;
+}
+
+else if(initial_attendance1 == 2)
+{
+--second_attendance1;
+--classes1;
+final_attendance1 = second_attendance1*100/classes1;
+cout << final_attendance1 << " % " << endl;
+}
+
+else if(initial_attendance1 == 3)
+{
+  final_attendance1 = second_attendance1*100/classes1;
+}
+
+else
+{
+cout << "Wrong Input" << endl;
+}
+}
+
+
+void gunveer_mark_attendance()
+{
+while (true)
+{
+cout << "3. Gunveer S Saluja : \t 1. YES \t 2. NO \t 3. ALREADY FEEDED \t " ;
+cin >> initial_attendance2;
+
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+if(initial_attendance2 == 1)
+{
+++second_attendance2;
+++classes2;
+final_attendance2 = second_attendance2*100/classes2;
+cout << final_attendance2 << " % " << endl;
+}
+
+else if(initial_attendance2 == 2)
+{
+--second_attendance2;
+--classes2;
+final_attendance2 = second_attendance2*100/classes2;
+cout << final_attendance2 << " % " << endl;
+}
+
+else if(initial_attendance2 == 3)
+{
+  final_attendance2 = second_attendance2*100/classes2;
+}
+
+else
+{
+cout << "Wrong Input" << endl;
+}
+}
+
+void yash_mark_attendance()
+{
+while (true)
+{
+cout << "4. Yash Dubey : \t 1. YES \t 2. NO \t 3. ALREADY FEEDED \t " ;
+cin >> initial_attendance3;
+if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+if(initial_attendance3 == 1)
+{
+++second_attendance3;
+++classes3;
+final_attendance3 = second_attendance3*100/classes3;
+cout << final_attendance3 << " % " << endl;
+}
+
+else if(initial_attendance3 == 2)
+{
+--second_attendance3;
+--classes3;
+final_attendance3 = second_attendance3*100/classes3;
+cout << final_attendance3 << " % " << endl;
+}
+
+else if(initial_attendance3 == 3)
+{
+  final_attendance3 = second_attendance3*100/classes3;
+}
+
+else
+{
+cout << "Wrong Input" << endl;
+}
+}
+
+
+void bhoomi_mark_attendance()
+{
+while (true)
+{
+cout << "5. Bhoomi Jain : \t 1. YES \t 2. NO \t 3. ALREADY FEEDED \t " ;
+cin >> initial_attendance4;
+if (!cin.fail())
+{
+           break;
+       }
+       cout << "Invalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+if(initial_attendance4 == 1)
+{
+++second_attendance4;
+++classes4;
+final_attendance4 = second_attendance4*100/classes4;
+cout << final_attendance4 << " % " << endl;
+}
+
+else if(initial_attendance4 == 2)
+{
+--second_attendance4;
+--classes4;
+final_attendance4 = second_attendance4*100/classes4;
+cout << final_attendance4 << " % " << endl;
+}
+
+else if(initial_attendance4 == 3)
+{
+  final_attendance4 = second_attendance4*100/classes4;
+}
+
+else
+{
+cout << "Wrong Input" << endl;
+}
+}
+};
+/*----------------------------------------*/
+
+/*------- Student Record Class -------*/
+class Student
+{
+private:
+    string name;
+    string id;
+
+public:
+    Student() {}
+
+    Student(string studentName, string studentId)
+        : name(studentName), id(studentId) {}
+
+    string getName() const
+{
+        return name;
+    }
+
+    string getId() const
+{
+        return id;
+    }
+};
+
+class StudentRecord
+{
+private:
+    Student students[MAX_STUDENTS];
+    int count;
+
+public:
+    StudentRecord() : count(0) {}
+
+    void addStudent()
+{
+        if (count == MAX_STUDENTS)
+{
+            cout << "Maximum number of students reached. Cannot add more." << endl;
+            return;
+        }
+
+        string name, id;
+       
+        cout << "Enter Student's Name: ";
+        cin >> name;
+        cout << "Enter Student's ID: ";
+        cin >> id;
+        students[count] = Student(name, id);
+        count++;
+        cout << "Student record added successfully!" << endl;
+        Sleep(1000);
+        system("CLS");
+    }
+
+    void displayStudents()
+{
+int temp=0;
+        if (count == 0)
+{
+            cout << "No student records found." << endl;
+            return;
+        }
+
+        cout << "......Student Records......" << endl;
+        for (int i = 0; i < count; i++)
+{
+cout << "---------------------------" << endl;
+cout << "\tStudent " << ++temp << endl;
+            cout << "Name: " << students[i].getName() << endl;
+            cout << "ID: " << students[i].getId() << endl;
+            cout << "---------------------------" << endl;
+            cout << endl;
+        }
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+        system("CLS");
+    }
+
+    void updateStudent()
+{
+        string id;
+
+        cout << "Enter the ID of the student to update: ";
+        cin >> id;
+
+        for (int i = 0; i < count; i++)
+{
+            if (students[i].getId() == id)
+{
+                string name;
+
+                cout << "Enter updated student name: ";
+                cin >> name;
+
+                students[i] = Student(name, id);
+
+                cout << "Student record updated successfully!" << endl;
+                Sleep(1000);
+                system("CLS");
+                return;
+            }
+        }
+        cout << "No student with the given ID found." << endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+        system("CLS");
+    }
+
+    void searchStudent()
+{
+        string id;
+
+        cout << "Enter the ID of the student to search: ";
+        cin >> id;
+
+        for (int i = 0; i < count; i++)
+{
+            if (students[i].getId() == id)
+{
+                cout << "Student Found:" << endl;
+                cout << "Name: " << students[i].getName() << endl;
+                cout << "ID: " << students[i].getId() << endl;
+                cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+        system("CLS");
+                return;
+            }
+        }
+        cout << "No student with the given ID found." << endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+        system("CLS");
+    }
+
+    void deleteStudent()
+{
+        string id;
+
+        cout << "Enter the ID of the student to delete: ";
+        cin >> id;
+
+        for (int i = 0; i < count; i++)
+{
+            if (students[i].getId() == id)
+{
+                for (int j = i; j < count - 1; j++)
+{
+                    students[j] = students[j + 1];
+                }
+                count--;
+
+                cout << "Student record deleted successfully!" << endl;
+                Sleep(1000);
+                system("CLS");
+                return;
+            }
+        }
+        cout << "No student with the given ID found." << endl;
+        cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+        system("CLS");
+    }
+};
+
+class display_Stu : public StudentRecord
+{
+public:
+void dis_()
+{
+int choice_1;
+    do
+{
+while (true)
+{
+        cout << ".........Menu.........\n";
+        cout << "----------------------\n";
+        cout << "1. Add Student\n";
+        cout << "2. Display Students\n";
+        cout << "3. Update Student\n";
+        cout << "4. Search Student\n";
+        cout << "5. Delete Student\n";
+        cout << "6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice_1;
+       
+        if (!cin.fail())
+{
+           break;
+        }
+        cout << "Invalid input. Please Try Again." << endl;
+        Sleep(1000);
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+       
+        switch (choice_1)
+{
+            case 1:
+            system("CLS");
+               addStudent();
+               break;
+            case 2:
+            system("CLS");
+               displayStudents();
+               break;
+            case 3:
+            system("CLS");
+               updateStudent();
+               break;
+            case 4:
+            system("CLS");
+               searchStudent();
+               break;
+            case 5:
+            system("CLS");
+               deleteStudent();
+               break;
+            default:
+            if(choice_1==6)
+                {
+                   cout<<"Taking You Back To The Main Menu..."<<endl;
+                   Sleep(1000);
+                   system("CLS");
+                }
+                else
+                {
+                cout<<"Invalid Input!! Please Enter A Valid Option..."<<endl;
+                Sleep(1000);
+system("CLS");
+}
+        }
+        cout << endl;
+    } while (choice_1>=1 && choice_1 <6);
+}
+};
+/*----------------------------------------*/
+
+/*------- Front Window Class For Admin -------*/
+class front_window_2
+{
+/*------- Object Creation -------*/
+login log2;
+attendance_ done;
+display_Stu dis;
+/*--------------------------------*/
+
+int testing_;
+public:
+front_window_2() : testing_(0) {}
+    void front_()
+{
+log2.login_id();
+compare_(*this);
+        if (testing_ >= 1)
+{
+            system("CLS");
+            int choice_;
+            do {
+                cout << "----------------------------------------------" << endl;
+                cout << "\t\tMain Menu" << endl;
+                cout << "----------------------------------------------" << endl;
+                cout << endl;
+                cout << "\t 1. Attendance " << endl;
+                cout << endl;
+                cout << "\t 2. Student Record" << endl;
+                cout << endl;
+                cout << "\t 3. Back To Login Portal" << endl;
+                cout << endl;
+                cout << "----------------------------------------------" << endl;
+                cout << endl;
+                cout << "Enter your choice: ";
+                cin >> choice_;
+
+                switch (choice_)
+{
+                    case 1:
+                        system("CLS");
+                        // Code for attendance
+                        done.display_attendance();
+done.disha_mark_attendance();
+done.sneha_mark_attendance();
+done.gunveer_mark_attendance();
+done.yash_mark_attendance();
+done.bhoomi_mark_attendance();
+cout << "\nPress any key to continue...";
+cin.ignore();
+cin.get();
+        system("CLS");
+                        break;
+
+                    case 2:
+                        system("CLS");
+                        // Code for Student Record
+                        dis.dis_();
+                        break;
+
+                    default:
+                        if (choice_ == 3)
+{
+                            cout << "Taking You Back To The Login Portal...." << endl;
+                            Sleep(1000);
+                            system("CLS");
+                        }
+else
+{
+                            cout << "Invalid Choice!" << endl;
+                            Sleep(1000);
+                            system("CLS");
+                        }
+                        break;
+                }
+
+                cout << endl;
+            } while (choice_ >= 1 && choice_ < 3);
+
+            system("CLS");
+        }
+else
+{
+            // Invalid credentials, repeat login process
+            // Code to handle invalid login credentials
+            cout << "Invalid Login Details!" << endl;
+            Sleep(1000);
+system("CLS");
+        }
+    }
+
+    friend void compare_(front_window_2& f2);
+};
+
+void compare_(front_window_2& f2)
+{
+    if (id_name == "admin" && id_pass == "999")
+{
+        f2.testing_++;
+    }
+}
+/*----------------------------------------*/
+
+/*------- Welcome Page Funtions -------*/
+void printCenteredText(const string& text) {
+    int width = 56;
+    int textLength = text.length();
+    int leftPadding = (width - textLength) / 2;
+    cout << setw(leftPadding + textLength) << setfill(' ') << text << endl;
+}
+void printHeader()
+{
+    printCenteredText("========================================================");
+    printCenteredText("||                                                    ||");
+    printCenteredText("||                Student Management System           ||");
+    printCenteredText("||                                                    ||");
+    printCenteredText("========================================================");
+}
+
+void printDivider()
+{
+    cout << "--------------------------------------------------------" << endl;
+}
+/*----------------------------------------*/
+
+/*------- Main Funtion -------*/
+int main()
+{
+    front_window f;
+    front_window_2 f2;
+   
+    system("CLS");
+    printHeader();
+    cout << endl;
+    printCenteredText("Welcome to the Student Management System!");
+    cout << "========================================================" << endl;
+    printCenteredText("Project Given By ~ Nikhlesh Pathik Sir");
+    printCenteredText("Project Completed By ~ Khushi Pal & Shivam Kumar Singh");
+    cout << endl;
+    cout << "Press any key to continue...";
+    cin.ignore();
+    cin.get(); // Wait for user input
+    system("CLS"); //clears screen
+   
+    int menu;
+    do
+    {
+    while (true)
+{
+cout<<endl;
+    cout<<endl;
+    cout<<endl;
+cout<<"\t\t\t _______________________________"<<endl;
+        cout<<"\t\t\t| \t1: Student Login\t|"<<endl;
+       cout<<"\t\t\t| \t2: Admin Login\t\t|"<<endl;
+       cout<<"\t\t\t| \t3: Exit\t\t\t|"<<endl;
+        cout<<"\t\t\t|_______________________________|"<<endl;
+       cout<<"\t\t\t \tEnter Your Choice: ";
+       cin>>menu;
+       if (!cin.fail())
+{
+           break;
+       }
+       cout << "\t\t\tInvalid input. Please Try Again." << endl;
+       Sleep(1000);
+       cout << "\t\t\tPress any key to continue...";
+       cin.clear();
+       cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("CLS"); //clears screen
+    }
+
+        switch(menu)
+        {
+            case 1: // Student Login
+            system("CLS");
+                f.front(); // Call the front() function of the front_window object
+                break;
+            case 2: // Admin login
+system("CLS");
+                f2.front_();
+                break;
+            case 3: //Exits The Program
+                exit(0);
+                break;
+            default:
+                cout<<"Invalid Entry!! Please Enter A Valid Option...."<<endl;
+                //Sleep(2000);
+                system("CLS");
+        }
+    } while(menu >= 1 && menu <= 3);
+   
+    return 0;
+}
+
+/*--------------------------------------------*/
